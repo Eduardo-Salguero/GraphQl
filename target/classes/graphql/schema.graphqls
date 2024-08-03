@@ -7,6 +7,10 @@ type Query {
     getHobby(id: Int): Hobby
     getAllDocentes: [Docente]
     getDocente(id:Int): Docente
+    getAllNotas: [Nota]
+    nota(id: ID!): Nota
+    notasByMateria(materiaId: ID!): [Nota]
+    notasByHobby(hobbyId: Int): [Nota]
     errors: [Error]
 }
 

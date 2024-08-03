@@ -6,6 +6,9 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.SequenceGenerator
+import jakarta.persistence.ManyToMany
+import jakarta.persistence.JoinTable
+import jakarta.persistence.JoinColumn
 
 
 @Entity
@@ -33,5 +36,29 @@ class Notas {
 
     @Column(nullable = false)
     var nota: Int? = null
+
+    @ManyToMany
+    @JoinTable(
+        name = "NotaMateria",
+        joinColumns = [
+            JoinColumn(name = "notaId")
+        ],
+        inverseJoinColumns = [
+            JoinColumn(name = "materiaId")
+        ]
+    )
+    var materia: MutableSet<Materia>? = null
+
+    @ManyToMany
+    @JoinTable(
+        name = "NotaHobbie",
+        joinColumns = [
+            JoinColumn(name = "notaId")
+        ],
+        inverseJoinColumns = [
+            JoinColumn(name = "hobbyId")
+        ]
+    )
+    var hobbie: MutableSet<Hobby>? = null
 
 }

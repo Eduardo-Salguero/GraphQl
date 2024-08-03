@@ -20,7 +20,7 @@ class NotasService(
     fun findAll(): List<NotasDTO> {
         val notases = notasRepository.findAll(Sort.by("id"))
         return notases.stream()
-                .map { notas -> mapToDTO(notas, NotasDTO()) }
+                .map { nota -> mapToDTO(nota, NotasDTO()) }
                 .toList()
     }
 
@@ -48,6 +48,19 @@ class NotasService(
         materiaRepository.findAllByNotas(notas)
                 .forEach { materia -> materia.notas!!.remove(notas) }
         notasRepository.delete(notas)
+    }
+    fun notasByMateria(materiaId: Long): List<NotasDTO> {
+        val notas = notasRepository.findByMateria_Id(materiaId)
+        return notas.stream()
+            .map { nota -> mapToDTO(nota, NotasDTO()) }
+            .toList()
+    }
+
+    fun notasByHobby(hobbyId: Int): List<NotasDTO> {
+        val notas = notasRepository.findByHobbie_Id(hobbyId)
+        return notas.stream()
+            .map { nota -> mapToDTO(nota, NotasDTO()) }
+            .toList()
     }
 
     private fun mapToDTO(notas: Notas, notasDTO: NotasDTO): NotasDTO {

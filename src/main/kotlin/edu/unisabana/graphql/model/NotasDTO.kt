@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
 
 
+
  class NotasDTO (
 
     var id: Long? = null,
@@ -13,6 +14,9 @@ import jakarta.validation.constraints.Size
     var actividad: String? = null,
 
     @NotNull
-    var nota: Int? = null
+    var nota: Int? = null,
 
+    var materia: List<Long>? = null,
+
+    var hobbie: List<Int>? = null
  )

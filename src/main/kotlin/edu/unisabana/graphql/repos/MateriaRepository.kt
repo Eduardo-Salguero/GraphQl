@@ -13,4 +13,6 @@ interface MateriaRepository : JpaRepository<Materia, Long> {
 
     fun existsByNombreIgnoreCase(nombre: String?): Boolean
 
+    fun findNotasById(materiaId: Long): List<Notas>
+
 }
